@@ -15,7 +15,16 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const res = await axios.post("/users/login", data);
+      if (res.data.success) {
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.data);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.data || error.message);
+    }
   };
 
   return (
