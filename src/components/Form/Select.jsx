@@ -19,7 +19,7 @@ const Select = ({
         className="select select-bordered w-full max-w-xs"
         {...register(field || label, { required })}
       >
-        <option value={selected} disabled={!selected} selected>
+        <option defaultValue={selected} disabled={!selected}>
           {selected || label.toUpperCase()}
         </option>
         {options.map((option, index) => (

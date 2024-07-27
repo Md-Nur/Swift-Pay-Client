@@ -5,21 +5,33 @@ import { useForm } from "react-hook-form";
 import RouteLabel from "../components/Form/RouteLabel";
 import SubmitBtn from "../components/Form/SubmitBtn";
 import Select from "../components/Form/Select";
-
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Join = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post("/users/register", data);
+      if (res.data.success) {
+        reset();
+        toast.success(res.data.message);
+      } else {
+        toast.error(res?.data?.data);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.data || error.message);
+    }
   };
 
   return (
-    <HeroForm title="Login" img={imgLogin}>
+    <HeroForm title="Join" img={imgLogin}>
       <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="name"
@@ -56,7 +68,7 @@ const Join = () => {
           register={register}
           error={errors.type}
         />
-        <SubmitBtn title="Login" />
+        <SubmitBtn title="Register" />
         <RouteLabel to="/login" label="Already Have an Account?" />
       </form>
     </HeroForm>
