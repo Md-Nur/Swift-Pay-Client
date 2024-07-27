@@ -4,12 +4,16 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import axios from "axios";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-// axios.defaults.auth
+axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

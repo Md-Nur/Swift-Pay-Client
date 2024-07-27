@@ -6,6 +6,9 @@ import RouteLabel from "../components/Form/RouteLabel";
 import SubmitBtn from "../components/Form/SubmitBtn";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../store/authSlice";
 
 const Login = () => {
   const {
@@ -14,11 +17,17 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const onSubmit = async (data) => {
     try {
       const res = await axios.post("/users/login", data);
       if (res.data.success) {
         toast.success(res.data.message);
+        dispatch(login({ userData: res.data.data }));
+        navigate(location?.state || "/");
       } else {
         toast.error(res.data.data);
       }
