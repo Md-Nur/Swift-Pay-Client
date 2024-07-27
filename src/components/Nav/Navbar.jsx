@@ -8,13 +8,13 @@ const Navbar = ({ children }) => {
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar bg-base-300 w-full">
-          <div className="flex-none lg:hidden">
+          <div className="flex-none">
             <label
               htmlFor="my-drawer-3"
               aria-label="open sidebar"
               className="btn btn-square btn-ghost"
             >
-              <MdMenu />
+              <MdMenu className="w-5 h-5" />
             </label>
           </div>
           <div className="mx-2 flex-1 px-2">SwiftPay</div>
