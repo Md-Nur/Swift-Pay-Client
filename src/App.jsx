@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     (async () => {
       const userData = await getCurrentUser();
-      console.log(userData);
       if (userData) {
         dispatch(login({ userData }));
       } else {

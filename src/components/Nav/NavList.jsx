@@ -10,9 +10,14 @@ const NavList = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       {authStatus ? (
-        <li>
-          <Logout />
-        </li>
+        <>
+          <li>
+            <Logout />
+          </li>
+          <li>
+            <NavLink to="/send-money">Send Money</NavLink>
+          </li>
+        </>
       ) : (
         <>
           <li>

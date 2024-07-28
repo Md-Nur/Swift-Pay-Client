@@ -20,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-
+  // console.log(location.state);
   const onSubmit = async (data) => {
     try {
       const res = await axios.post("/users/login", data);
