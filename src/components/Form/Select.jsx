@@ -16,7 +16,7 @@ const Select = ({
       )}
 
       <select
-        className="select select-bordered w-full max-w-xs"
+        className="select select-bordered w-full"
         {...register(field || label, { required })}
       >
         <option defaultValue={selected} disabled={!selected}>

@@ -5,6 +5,7 @@ import Join from "./pages/Join";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Login from "./pages/Login";
 import SendMoney from "./pages/SendMoney";
+import CashOut from "./pages/CashOut";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <SendMoney />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/cash-out",
+        element: (
+          <PrivateRoutes>
+            <CashOut />
           </PrivateRoutes>
         ),
       },

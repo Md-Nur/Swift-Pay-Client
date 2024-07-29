@@ -26,7 +26,7 @@ const Login = () => {
       const res = await axios.post("/users/login", data);
       if (res.data.success) {
         toast.success(res.data.message);
-        dispatch(login({ userData: res.data.data }));
+        dispatch(login({ userData: res.data.data.user }));
         navigate(location?.state || "/");
       } else {
         toast.error(res.data.data);
