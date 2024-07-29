@@ -22,6 +22,11 @@ const Transaction = ({ title, url }) => {
   const onSubmit = async (data) => {
     toast.loading("Transaction ...");
     data.reqPhone = userData.mobileNumber;
+    if (data.amount < 1) {
+      toast.dismiss();
+      toast.error("Amount must be greater than 0");
+      return;
+    }
     try {
       const res = await axios.post(`/transaction/${url}`, data);
       if (res.data.success) {

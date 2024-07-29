@@ -20,6 +20,9 @@ const NavList = () => {
           <li>
             <NavLink to="/cash-out">Cash Out</NavLink>
           </li>
+          <li>
+            <NavLink to="/cash-in">Cash In</NavLink>
+          </li>
         </>
       ) : (
         <>

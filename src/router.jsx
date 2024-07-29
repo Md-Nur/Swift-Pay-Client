@@ -6,6 +6,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import Login from "./pages/Login";
 import SendMoney from "./pages/SendMoney";
 import CashOut from "./pages/CashOut";
+import CashIn from "./pages/CashIn";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <CashOut />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/cash-in",
+        element: (
+          <PrivateRoutes>
+            <CashIn />
           </PrivateRoutes>
         ),
       },
