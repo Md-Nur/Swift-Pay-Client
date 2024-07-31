@@ -9,8 +9,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.status = true;
-      state.userData = action.payload.userData;
+      const { userData } = action.payload;
+      state.status = userData.isApproved && userData.accountStatus === "Active";
+      state.userData = userData;
     },
     logout: (state, action) => {
       state.status = false;
