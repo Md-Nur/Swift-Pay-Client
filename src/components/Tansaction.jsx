@@ -3,10 +3,12 @@ import imgTransaction from "../assets/transaction.png";
 import HeroForm from "../components/Form/HeroForm";
 import SubmitBtn from "../components/Form/SubmitBtn";
 import Input from "../components/Form/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
+import getCurrentUser from "../utils/getUser";
 
 const Transaction = ({ title, url }) => {
   const {
@@ -18,6 +20,7 @@ const Transaction = ({ title, url }) => {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     toast.loading("Transaction ...");
@@ -34,7 +37,8 @@ const Transaction = ({ title, url }) => {
         toast.success(
           `${res.data.message} transaction id: ${res.data.data._id}`
         );
-
+        const userData = await getCurrentUser();
+        if (userData) dispatch(login({ userData }));
         navigate("/");
       }
     } catch (error) {

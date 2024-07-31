@@ -1,22 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import getCurrentUser from "../utils/getUser";
-import { login } from "../store/authSlice";
+import Balance from "../components/Home/Balance";
+import BasicInfo from "../components/Home/BasicInfo";
+import Hero from "../components/Home/Hero";
+import UserInfo from "../components/Home/UserInfo";
 
 const Home = () => {
-  const { userData } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
-  const checkBalance = async () => {
-    const currentUser = await getCurrentUser();
-    dispatch(login({ userData: currentUser }));
-  };
   return (
-    <>
-      <p>{userData.name}</p>
-      <p>{userData.mobileNumber}</p>
-      <p>{userData.email}</p>
-      <p>{userData.balance}</p>
-    </>
+    <section>
+      <Hero />
+      <div className="flex justify-evenly w-full flex-wrap items-center my-10">
+        <UserInfo />
+        <Balance />
+      </div>
+      <BasicInfo />
+    </section>
   );
 };
 

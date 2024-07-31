@@ -11,17 +11,22 @@ const NavList = () => {
       </li>
       {authStatus ? (
         <>
+          {authStatus.type === "User" && (
+            <>
+              <li>
+                <NavLink to="/send-money">Send Money</NavLink>
+              </li>
+              <li>
+                <NavLink to="/cash-out">Cash Out</NavLink>
+              </li>
+              <li>
+                <NavLink to="/cash-in">Cash In</NavLink>
+              </li>
+            </>
+          )}
+          
           <li>
             <Logout />
-          </li>
-          <li>
-            <NavLink to="/send-money">Send Money</NavLink>
-          </li>
-          <li>
-            <NavLink to="/cash-out">Cash Out</NavLink>
-          </li>
-          <li>
-            <NavLink to="/cash-in">Cash In</NavLink>
           </li>
         </>
       ) : (
