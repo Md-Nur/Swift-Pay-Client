@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import SendMoney from "./pages/SendMoney";
 import CashOut from "./pages/CashOut";
 import CashIn from "./pages/CashIn";
+import Transactions from "./pages/Transactions";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <CashIn />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/transactions",
+        element: (
+          <PrivateRoutes>
+            <Transactions />
           </PrivateRoutes>
         ),
       },

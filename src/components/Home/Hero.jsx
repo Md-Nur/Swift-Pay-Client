@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { userData } = useSelector((state) => state.auth);
@@ -14,7 +15,9 @@ const Hero = () => {
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Swift Pay</h1>
-          <button className="btn btn-primary my-3">{userData?.type}</button>
+          <Link to="/transactions" className="btn btn-primary my-3">
+            See Transactions
+          </Link>
         </div>
       </div>
     </div>

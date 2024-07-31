@@ -2,13 +2,16 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <button
       onClick={() => {
         toast.loading("Logging Out...");
+        navigate("/login");
         axios
           .get("/users/logout")
           .then((res) => {
