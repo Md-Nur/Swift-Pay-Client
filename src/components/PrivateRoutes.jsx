@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const PrivateRoutes = ({ children }) => {
   const authStatus = useSelector((state) => state.auth.status);
-  const { type } = useSelector((state) => state.auth.userData);
+  const type = useSelector((state) => state.auth.userData?.type);
   const location = useLocation();
 
   // console.log(location.pathname);

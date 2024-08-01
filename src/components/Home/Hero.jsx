@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div
       className={`hero ${
-        userData.type === "Agent"
+        userData?.type === "Agent"
           ? "bg-info text-info-content"
           : "bg-secondary text-secondary-content"
       } py-10`}

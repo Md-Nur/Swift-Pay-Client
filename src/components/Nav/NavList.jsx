@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 
 const NavList = () => {
   const authStatus = useSelector((state) => state.auth.status);
-  const { type } = useSelector((state) => state.auth.userData);
+
+  const type = useSelector((state) => state.auth?.userData?.type);
+
   return (
     <>
       <li>

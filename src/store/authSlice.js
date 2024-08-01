@@ -13,7 +13,7 @@ const authSlice = createSlice({
       state.status = userData.isApproved && userData.accountStatus === "Active";
       state.userData = userData;
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.status = false;
       state.userData = null;
     },
