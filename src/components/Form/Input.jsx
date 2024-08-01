@@ -19,6 +19,7 @@ const Input = ({
         type={type}
         placeholder={label.toUpperCase()}
         className={`input input-bordered ${classes}`}
+        autoComplete="new-password"
         {...register(field || label, { required })}
         {...props}
       />

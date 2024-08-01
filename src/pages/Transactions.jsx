@@ -53,7 +53,7 @@ const Transactions = () => {
   return (
     <section className="w-full">
       <h1 className="font-bold text-5xl my-10 text-center">Transactions</h1>
-      <div className="overflow-x-auto max-w-5xl mx-auto my-10">
+      <div className="overflow-x-auto max-w-6xl mx-auto my-10">
         <table className="table table-xs sm:table-sm md:table-md lg:table-lg">
           {/* head */}
           <thead>
@@ -65,6 +65,7 @@ const Transactions = () => {
               <th>Methode</th>
               <th>Amount</th>
               <th>Fee</th>
+              {userData.type !== "User" && <th>Status</th>}
             </tr>
           </thead>
           <tbody>
@@ -72,7 +73,12 @@ const Transactions = () => {
               <tr
                 key={transaction._id}
                 className={
-                  transaction.method === "cashIn"
+                  (transaction.method === "cashIn" &&
+                    userData.mobileNumber === transaction.reqPhone) ||
+                  (transaction.method == "cashOut" &&
+                    userData.type === "Agent") ||
+                  (transaction.method == "sendMoney" &&
+                    userData.mobileNumber === transaction.resPhone)
                     ? "text-success"
                     : "text-error"
                 }
@@ -84,6 +90,17 @@ const Transactions = () => {
                 <td>{transactionMethods[transaction.method]}</td>
                 <td>{transaction.amount}/=</td>
                 <td>{transaction.fee}/=</td>
+                {userData.type !== "User" && (
+                  <td>
+                    <button
+                      className={`btn btn-sm ${
+                        transaction.isPending ? "btn-warning" : "btn-success"
+                      }`}
+                    >
+                      {transaction.isPending ? "Pending" : "Clear"}
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

@@ -53,7 +53,11 @@ const Transaction = ({ title, url }) => {
 
   return (
     <HeroForm title={title} img={imgTransaction}>
-      <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        autoComplete="off"
+        className="card-body"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Input
           label="Sender Mobile Number"
           field="resPhone"
