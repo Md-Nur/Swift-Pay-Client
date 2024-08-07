@@ -19,7 +19,7 @@ const Balance = () => {
 
       <div className="stat">
         <div className="stat-title">Current balance</div>
-        <div className="stat-value">{balance}/=</div>
+        <div className="stat-value">{balance.toFixed(2)}/=</div>
         {type === "User" && (
           <div className="stat-actions">
             <Link to="cash-out" className="btn btn-sm">

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 import { useSelector } from "react-redux";
+import TransactionApproval from "../components/ActionBtn/TransactionApproval";
 
 export const transactionMethods = {
   cashIn: "Cash In",
@@ -65,24 +66,13 @@ const Transactions = () => {
               <th>Methode</th>
               <th>Amount</th>
               <th>Fee</th>
+              <th>Add/Reduce</th>
               {userData.type !== "User" && <th>Status</th>}
             </tr>
           </thead>
           <tbody>
             {transactions.map((transaction) => (
-              <tr
-                key={transaction._id}
-                className={
-                  (transaction.method === "cashIn" &&
-                    userData.mobileNumber === transaction.reqPhone) ||
-                  (transaction.method == "cashOut" &&
-                    userData.type === "Agent") ||
-                  (transaction.method == "sendMoney" &&
-                    userData.mobileNumber === transaction.resPhone)
-                    ? "text-success"
-                    : "text-error"
-                }
-              >
+              <tr key={transaction._id}>
                 <td>{transactions.indexOf(transaction) + 1}</td>
                 <td>{transaction._id}</td>
                 <td>{transaction.reqPhone}</td>
@@ -90,15 +80,30 @@ const Transactions = () => {
                 <td>{transactionMethods[transaction.method]}</td>
                 <td>{transaction.amount}/=</td>
                 <td>{transaction.fee}/=</td>
+                <td
+                  className={
+                    // Logic for color add or remove to total amount
+                    (transaction.method === "cashIn" &&
+                      userData.mobileNumber === transaction.reqPhone) ||
+                    (transaction.method == "cashOut" &&
+                      userData.type === "Agent") ||
+                    (transaction.method == "sendMoney" &&
+                      userData.mobileNumber === transaction.resPhone)
+                      ? "text-success"
+                      : "text-error"
+                  }
+                >
+                  {transaction.amount +
+                    (userData.type === "User" &&
+                    transaction.method === "sendMoney" &&
+                    userData.mobileNumber === transaction.resPhone
+                      ? 0
+                      : transaction.fee)}
+                  /=
+                </td>
                 {userData.type !== "User" && (
                   <td>
-                    <button
-                      className={`btn btn-sm ${
-                        transaction.isPending ? "btn-warning" : "btn-success"
-                      }`}
-                    >
-                      {transaction.isPending ? "Pending" : "Clear"}
-                    </button>
+                    <TransactionApproval transaction={transaction} />
                   </td>
                 )}
               </tr>
