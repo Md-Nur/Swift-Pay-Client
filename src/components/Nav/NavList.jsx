@@ -27,6 +27,11 @@ const NavList = () => {
               </li>
             </>
           )}
+          {type === "Admin" && (
+            <li>
+              <NavLink to="/manage-user">Manage User</NavLink>
+            </li>
+          )}
           <li>
             <NavLink to="/transactions">Transactions</NavLink>
           </li>

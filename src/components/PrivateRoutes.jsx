@@ -19,6 +19,9 @@ const PrivateRoutes = ({ children }) => {
   } else if (userPaths && type !== "User") {
     toast.error("Only user can access this page");
     return <Navigate to="/" />;
+  } else if (location.pathname === "/manage-user" && type !== "Admin") {
+    toast.error("Only admin can access this page");
+    return <Navigate to="/" />;
   } else {
     return children;
   }

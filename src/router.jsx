@@ -8,6 +8,7 @@ import SendMoney from "./pages/SendMoney";
 import CashOut from "./pages/CashOut";
 import CashIn from "./pages/CashIn";
 import Transactions from "./pages/Transactions";
+import ManageUser from "./pages/ManageUser";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Transactions />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/manage-user",
+        element: (
+          <PrivateRoutes>
+            <ManageUser />
           </PrivateRoutes>
         ),
       },

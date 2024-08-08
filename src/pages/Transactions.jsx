@@ -54,7 +54,7 @@ const Transactions = () => {
   return (
     <section className="w-full">
       <h1 className="font-bold text-5xl my-10 text-center">Transactions</h1>
-      <div className="overflow-x-auto max-w-6xl mx-auto my-10">
+      <div className="overflow-x-auto max-w-7xl mx-auto my-10">
         <table className="table table-xs sm:table-sm md:table-md lg:table-lg">
           {/* head */}
           <thead>
@@ -66,7 +66,8 @@ const Transactions = () => {
               <th>Methode</th>
               <th>Amount</th>
               <th>Fee</th>
-              <th>Add/Reduce</th>
+              {userData.type !== "Admin" && <th>Add/Reduce</th>}
+              <th>Date</th>
               {userData.type !== "User" && <th>Status</th>}
             </tr>
           </thead>
@@ -80,27 +81,30 @@ const Transactions = () => {
                 <td>{transactionMethods[transaction.method]}</td>
                 <td>{transaction.amount}/=</td>
                 <td>{transaction.fee}/=</td>
-                <td
-                  className={
-                    // Logic for color add or remove to total amount
-                    (transaction.method === "cashIn" &&
-                      userData.mobileNumber === transaction.reqPhone) ||
-                    (transaction.method == "cashOut" &&
-                      userData.type === "Agent") ||
-                    (transaction.method == "sendMoney" &&
-                      userData.mobileNumber === transaction.resPhone)
-                      ? "text-success"
-                      : "text-error"
-                  }
-                >
-                  {transaction.amount +
-                    (userData.type === "User" &&
-                    transaction.method === "sendMoney" &&
-                    userData.mobileNumber === transaction.resPhone
-                      ? 0
-                      : transaction.fee)}
-                  /=
-                </td>
+                {userData.type !== "Admin" && (
+                  <td
+                    className={
+                      // Logic for color add or remove to total amount
+                      (transaction.method === "cashIn" &&
+                        userData.mobileNumber === transaction.reqPhone) ||
+                      (transaction.method == "cashOut" &&
+                        userData.type === "Agent") ||
+                      (transaction.method == "sendMoney" &&
+                        userData.mobileNumber === transaction.resPhone)
+                        ? "text-success"
+                        : "text-error"
+                    }
+                  >
+                    {transaction.amount +
+                      (userData.type === "User" &&
+                      transaction.method === "sendMoney" &&
+                      userData.mobileNumber === transaction.resPhone
+                        ? 0
+                        : transaction.fee)}
+                    /=
+                  </td>
+                )}
+                <td>{new Date(transaction.updatedAt).toLocaleString()}</td>
                 {userData.type !== "User" && (
                   <td>
                     <TransactionApproval transaction={transaction} />

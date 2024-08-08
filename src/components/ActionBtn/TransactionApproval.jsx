@@ -3,18 +3,19 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import getCurrentUser from "../../utils/getUser";
 import { login } from "../../store/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const TransactionApproval = ({ transaction }) => {
   const [isPending, setIsPending] = useState(transaction.isPending);
   const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.auth);
 
   const openModal = () => {
-    if (isPending)
+    if (isPending && userData.role === "Agent")
       document
         .getElementById(`transaction-verify-${transaction._id}`)
         .showModal();
-    else toast.error("This transaction is already approved");
+    // else toast.error("This transaction is already approved");
   };
 
   const handleApprove = () => {
