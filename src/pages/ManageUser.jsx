@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
+import UserApproval from "../components/ActionBtn/UserApproval";
 
 const ManageUser = () => {
   const [users, setUsers] = useState([]);
@@ -42,7 +43,7 @@ const ManageUser = () => {
               <th>Approval</th>
               <th>Status</th>
               <th>Type</th>
-              <th>Balance</th>
+              {/* <th>Balance</th> */}
             </tr>
           </thead>
           <tbody>
@@ -52,10 +53,12 @@ const ManageUser = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.mobileNumber}</td>
-                <td>{user.isApproved ? "Approved" : "Not Approved"}</td>
+                <td>
+                  <UserApproval user={user} />
+                </td>
                 <td>{user.accountStatus}</td>
                 <td>{user.type}</td>
-                <td>{user.balance.toFixed(2)}</td>
+                {/* <td>{user.balance.toFixed(2)}</td> */}
               </tr>
             ))}
           </tbody>
