@@ -18,6 +18,8 @@ const Join = () => {
     reset,
   } = useForm();
 
+  console.log(axios.defaults.baseURL);
+
   const onSubmit = async (data) => {
     try {
       const res = await axios.post("/users/register", data);
