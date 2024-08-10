@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import UserApproval from "../components/ActionBtn/UserApproval";
+import UserStatus from "../components/ActionBtn/UserStatus";
 
 const ManageUser = () => {
   const [users, setUsers] = useState([]);
@@ -56,7 +57,9 @@ const ManageUser = () => {
                 <td>
                   <UserApproval user={user} />
                 </td>
-                <td>{user.accountStatus}</td>
+                <td>
+                  <UserStatus user={user} />
+                </td>
                 <td>{user.type}</td>
                 {/* <td>{user.balance.toFixed(2)}</td> */}
               </tr>
