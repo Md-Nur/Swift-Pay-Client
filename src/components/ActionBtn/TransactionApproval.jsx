@@ -11,7 +11,7 @@ const TransactionApproval = ({ transaction }) => {
   const { userData } = useSelector((state) => state.auth);
 
   const openModal = () => {
-    if (isPending && userData.role === "Agent")
+    if (isPending && userData.type === "Agent")
       document
         .getElementById(`transaction-verify-${transaction._id}`)
         .showModal();

@@ -7,8 +7,10 @@ import SubmitBtn from "../components/Form/SubmitBtn";
 import Select from "../components/Form/Select";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Join = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,6 +24,7 @@ const Join = () => {
       if (res.data.success) {
         reset();
         toast.success(res.data.message);
+        navigate("/login");
       } else {
         toast.error(res?.data?.data);
       }
