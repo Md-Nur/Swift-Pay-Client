@@ -13,13 +13,16 @@ const UserApproval = ({ user }) => {
 
   const handleApprove = () => {
     // Your logic here
+    toast.loading("Please wait...");
     axios
       .patch(`/users/approve/${user._id}`)
       .then(async (res) => {
+        toast.dismiss();
         toast.success(res.data.message);
         setUserApproval(true);
       })
       .catch((error) => {
+        toast.dismiss();
         toast.error(
           error?.response?.data?.data ||
             error?.message ||

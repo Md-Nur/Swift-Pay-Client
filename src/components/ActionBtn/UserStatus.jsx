@@ -12,13 +12,16 @@ const UserStatus = ({ user }) => {
   };
 
   const onSubmit = (data) => {
+    toast.loading("Please wait...");
     axios
       .patch(`/users/status/${user._id}`, data)
       .then((res) => {
         setAccountStatus(res.data.data.accountStatus);
+        toast.dismiss();
         toast.success(res.data.message);
       })
       .catch((error) => {
+        toast.dismiss();
         toast.error(
           error?.response?.data?.data ||
             error?.message ||

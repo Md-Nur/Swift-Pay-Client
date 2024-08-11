@@ -20,6 +20,7 @@ const TransactionApproval = ({ transaction }) => {
 
   const handleApprove = () => {
     // Your logic here
+    toast.loading("Please wait..." )
     axios
       .post("/transaction/approve", { tranctionId: transaction._id })
       .then(async (res) => {
@@ -27,10 +28,12 @@ const TransactionApproval = ({ transaction }) => {
         if (userData) {
           dispatch(login({ userData }));
         }
+        toast.dismiss()
         toast.success(res.data.message);
         setIsPending(false);
       })
       .catch((error) => {
+        toast.dismiss()
         toast.error(
           error?.response?.data?.data ||
             error?.message ||
