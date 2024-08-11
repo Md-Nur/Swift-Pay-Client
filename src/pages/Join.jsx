@@ -21,16 +21,19 @@ const Join = () => {
   console.log(axios.defaults.baseURL);
 
   const onSubmit = async (data) => {
+    toast.loading("Please wait...!", { autoClose: 10000 });
     try {
       const res = await axios.post("/users/register", data);
       if (res.data.success) {
         reset();
+        toast.dismiss();
         toast.success(res.data.message);
         navigate("/login");
       } else {
         toast.error(res?.data?.data);
       }
     } catch (error) {
+      toast.dismiss();
       toast.error(error?.response?.data?.data || error.message);
     }
   };

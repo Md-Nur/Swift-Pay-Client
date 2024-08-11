@@ -34,6 +34,7 @@ const Login = () => {
         toast.error(res.data.data);
       }
     } catch (error) {
+      toast.dismiss();
       toast.error(error?.response?.data?.data || error.message);
     }
   };
