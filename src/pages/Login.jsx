@@ -22,8 +22,10 @@ const Login = () => {
   const location = useLocation();
   // console.log(location.state);
   const onSubmit = async (data) => {
+    toast.loading("Please wait...!", { autoClose: 10000 });
     try {
       const res = await axios.post("/users/login", data);
+      toast.dismiss();
       if (res.data.success) {
         toast.success(res.data.message);
         dispatch(login({ userData: res.data.data.user }));
