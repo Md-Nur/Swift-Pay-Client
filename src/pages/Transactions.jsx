@@ -54,7 +54,7 @@ const Transactions = () => {
   return (
     <section className="w-full">
       <h1 className="font-bold text-5xl my-10 text-center">Transactions</h1>
-      <div className="overflow-x-auto max-w-7xl mx-auto my-10">
+      <div className="overflow-x-auto mx-4 my-10">
         <table className="table table-xs sm:table-sm md:table-md lg:table-lg">
           {/* head */}
           <thead>
