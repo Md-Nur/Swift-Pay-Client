@@ -18,7 +18,7 @@ const Join = () => {
     reset,
   } = useForm();
 
-  console.log(axios.defaults.baseURL);
+  // console.log(axios.defaults.baseURL);
 
   const onSubmit = async (data) => {
     toast.loading("Please wait...!", { autoClose: 10000 });
